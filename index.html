@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amsterdam &amp; Almere 2026">
+<meta property="og:description" content="Family trip plan · Nov 6–14 · Diwali week">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://csharma-lab.github.io/amsterdam-2026/">
+<meta property="og:image" content="https://csharma-lab.github.io/amsterdam-2026/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Amsterdam &amp; Almere 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: canal-house header, who's-in-town strip, then a day-by-day ledger with times in a mono gutter */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --ink:#16233F; --muted:#5B6782; --line:#D9DEEA;
+  --delft:#2546A8; --delft-soft:#E3E9F8; --marigold:#D98E04; --marigold-soft:#FBEFD6;
+  --booked:#1E7A52; --booked-soft:#DDF1E6; --pending:#A86400; --pending-soft:#FBEBD0; --idea:#5B6782; --idea-soft:#E9ECF3;
+  --fest:#B0236A; --fest-soft:#FAE3EE; --teal:#0F6F78; --teal-soft:#DCEFF0;
+  --display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1322; --surface:#131C30; --ink:#E7ECF6; --muted:#9AA6C0; --line:#25304A;
+  --delft:#8FA8F0; --delft-soft:#1C2A4D; --marigold:#F2B23A; --marigold-soft:#3A2C10;
+  --booked:#5CC892; --booked-soft:#12301F; --pending:#F2B23A; --pending-soft:#36290F; --idea:#9AA6C0; --idea-soft:#1E273B;
+  --fest:#F58CBF; --fest-soft:#3B1428; --teal:#6CCDD5; --teal-soft:#10292D;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1322; --surface:#131C30; --ink:#E7ECF6; --muted:#9AA6C0; --line:#25304A;
+  --delft:#8FA8F0; --delft-soft:#1C2A4D; --marigold:#F2B23A; --marigold-soft:#3A2C10;
+  --booked:#5CC892; --booked-soft:#12301F; --pending:#F2B23A; --pending-soft:#36290F; --idea:#9AA6C0; --idea-soft:#1E273B;
+  --fest:#F58CBF; --fest-soft:#3B1428; --teal:#6CCDD5; --teal-soft:#10292D;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+/* header */
+header{display:flex;flex-direction:column;gap:14px}
+.skyline{width:100%;max-width:100%;height:auto;display:block;color:var(--delft)}
+.skyline .win{fill:var(--marigold)}
+h1{font-size:clamp(40px,8vw,68px);line-height:1}
+h1 em{font-style:italic;color:var(--delft)}
+.sub{color:var(--muted);max-width:60ch;margin:0}
+.bases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.base{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.base b{font-weight:600}
+.base span{color:var(--muted);font-size:13.5px}
+/* section heads */
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px}
+h2{font-size:30px}
+/* who's in town */
+.gantt{overflow-x:auto}
+.g{display:grid;grid-template-columns:150px repeat(9,minmax(38px,1fr));gap:4px 3px;min-width:560px;align-items:center}
+.g .day{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;line-height:1.25}
+.g .day b{display:block;color:var(--ink);font-weight:500;font-size:13px}
+.g .who{grid-column:1;font-size:13.5px;font-weight:500;padding-right:8px}
+.bar{height:26px;border-radius:6px;background:var(--delft);color:#fff;font-size:11.5px;display:flex;align-items:center;padding-inline:8px;white-space:nowrap;overflow:hidden}
+.bar.alt{background:var(--delft-soft);color:var(--delft)}
+.bar.aunty{background:var(--teal-soft);color:var(--teal)}
+/* legend + filter */
+.legend{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.chip.booked{background:var(--booked-soft);color:var(--booked)}
+.chip.pending{background:var(--pending-soft);color:var(--pending)}
+.chip.idea{background:var(--idea-soft);color:var(--idea)}
+.chip.fest{background:var(--fest-soft);color:var(--fest)}
+button.f{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;font-size:13px}
+button.f[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button.f:focus-visible,a:focus-visible{outline:2px solid var(--delft);outline-offset:2px}
+/* days */
+.days{display:flex;flex-direction:column;gap:14px}
+.daycard{background:var(--surface);border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:96px 1fr;overflow:hidden}
+.daycard.fest-day{border-color:color-mix(in srgb,var(--fest) 40%,var(--line))}
+.date{padding:16px 12px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.date .dow{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.date .num{font-family:var(--display);font-size:44px;line-height:1}
+.date .where{font-size:12px;color:var(--muted);margin-top:6px}
+.date .sun{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:auto;padding-top:10px}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.dhead{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dhead h3{margin:0;font-size:17px;font-weight:600}
+ul.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.item{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:start}
+.item .t{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:2px;font-variant-numeric:tabular-nums}
+.item .what{min-width:0}
+.item .what b{font-weight:600}
+.item .note{display:block;color:var(--muted);font-size:13.5px}
+.item a{color:var(--delft);text-underline-offset:2px}
+.item[hidden]{display:none}
+/* lists */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.panel h3{margin:0;font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:500}
+.panel ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.panel li{font-size:14px}
+.panel li b{font-weight:600}
+.panel li span{color:var(--muted);display:block;font-size:13px}
+.panel a{color:var(--delft);text-underline-offset:2px}
+.todo li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.todo .box{width:14px;height:14px;border:1.5px solid var(--muted);border-radius:3px;margin-top:4px}
+footer{color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:560px){
+  .daycard{grid-template-columns:1fr}
+  .date{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;align-items:baseline;gap:10px;flex-wrap:wrap;padding:12px 16px}
+  .date .num{font-size:34px}
+  .date .where,.date .sun{margin-top:0;padding-top:0}
+  .item{grid-template-columns:84px 1fr}
+  .item .chip{grid-column:2;justify-self:start}
+}
+@media (prefers-reduced-motion:no-preference){.daycard{transition:border-color .2s}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header>
+  <svg class="skyline" viewBox="0 0 860 90" role="img" aria-label="Row of Amsterdam canal-house gables with lit windows">
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M10 90V40l18-18 18 18v50"/><path d="M58 90V30l6-6v-8h20v8l6 6v60"/><path d="M104 90V44l22-26 22 26v46"/>
+      <path d="M160 90V36h8v-8h8v-8h16v8h8v8h8v54"/><path d="M220 90V46l16-20 16 20v44"/><path d="M264 90V32l24-22 24 22v58"/>
+      <path d="M324 90V40l6-6v-10h24v10l6 6v50"/><path d="M372 90V48l18-18 18 18v42"/><path d="M420 90V28h10v-8h20v8h10v62"/>
+      <path d="M472 90V42l20-22 20 22v48"/><path d="M524 90V34l6-6v-8h24v8l6 6v56"/><path d="M572 90V46l18-18 18 18v44"/>
+      <path d="M620 90V30h8v-8h8v-8h16v8h8v8h8v60"/><path d="M688 90V44l22-24 22 24v46"/><path d="M744 90V36l6-6v-8h22v8l6 6v54"/><path d="M790 90V48l16-18 16 18v42"/><path d="M834 90V40l13-14 13 14v50"/>
+    </g>
+    <g class="win"><rect x="22" y="50" width="6" height="8" rx="1"/><rect x="118" y="56" width="6" height="8" rx="1"/><rect x="180" y="44" width="6" height="8" rx="1"/><rect x="284" y="40" width="6" height="8" rx="1"/><rect x="384" y="58" width="6" height="8" rx="1"/><rect x="436" y="40" width="6" height="8" rx="1"/><rect x="536" y="46" width="6" height="8" rx="1"/><rect x="636" y="40" width="6" height="8" rx="1"/><rect x="704" y="54" width="6" height="8" rx="1"/><rect x="800" y="58" width="6" height="8" rx="1"/></g>
+  </svg>
+  <div class="eyebrow">Fri 6 – Sat 14 November 2026 · Diwali week</div>
+  <h1>Amsterdam <em>&amp;</em> Almere</h1>
+  <p class="sub">The family plan for Diwali in the Netherlands. Living document: booked things are marked, ideas stay ideas until someone books them.</p>
+  <div class="bases">
+    <div class="base"><span>Nov 6 – Wed Nov 11 morning</span><b>Almere, with family</b><span>About 35 minutes from Schiphol by car</span></div>
+    <div class="base"><span>Wed Nov 11 – Sat Nov 14</span><b>Waldorf Astoria Amsterdam</b><span>Herengracht 542, canal belt · under Ali's name</span></div>
+  </div>
+</header>
+
+<section aria-labelledby="who">
+  <div class="sec-head"><h2 id="who">Who's in town</h2><span class="eyebrow">9 days</span></div>
+  <div class="gantt" style="margin-top:14px">
+    <div class="g">
+      <div></div>
+      <div class="day">Fri<b>6</b></div><div class="day">Sat<b>7</b></div><div class="day">Sun<b>8</b></div><div class="day">Mon<b>9</b></div><div class="day">Tue<b>10</b></div><div class="day">Wed<b>11</b></div><div class="day">Thu<b>12</b></div><div class="day">Fri<b>13</b></div><div class="day">Sat<b>14</b></div>
+
+      <div class="who">Chirag, Ali &amp; Anushka</div><div class="bar" style="grid-column:2 / span 9">Almere → Waldorf from Wed</div>
+      <div class="who">Mala, Kuldeep &amp; Divya</div><div class="bar alt" style="grid-column:2 / span 6">Fly home Wed 9:50 AM</div>
+      <div class="who">Baby Aunty</div><div class="bar aunty" style="grid-column:5 / span 5">Mon ~9 AM → Fri · flights TBC</div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="days">
+  <div class="sec-head">
+    <h2 id="days">Day by day</h2>
+    <div class="legend" role="group" aria-label="Filter">
+      <button class="f" id="f-all" aria-pressed="true" data-f="all">Everything</button>
+      <button class="f" id="f-booked" aria-pressed="false" data-f="booked">Booked only</button>
+    </div>
+  </div>
+  <div class="legend" style="margin-top:10px"><span class="chip booked">Booked</span><span class="chip pending">Pending</span><span class="chip idea">Idea</span><span class="chip fest">Festival</span></div>
+
+  <div class="days" style="margin-top:16px">
+
+  <article class="daycard fest-day">
+    <div class="date"><span class="dow">Fri</span><span class="num">6</span><span class="where">Almere</span><span class="sun">Sunset ~5:03 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Arrival</h3><span class="chip fest">Dhanteras</span></div>
+      <ul class="items">
+        <li class="item" data-s="booked"><span class="t">9:10 AM</span><span class="what"><b>Land at Schiphol</b> on KLM KL0606, nonstop from SFO<span class="note">Chirag, Ali, Anushka, Mala, Kuldeep, Divya</span></span><span class="chip booked">Booked</span></li>
+        <li class="item" data-s="booked"><span class="t">~10:30 AM</span><span class="what"><b>Pick up the Avis rental</b> at Schiphol<span class="note">Volvo XC60 SUV. Returned Wed morning at the airport when Mala, Kuldeep and Divya fly out</span></span><span class="chip booked">Booked</span></li>
+        <li class="item" data-s="booked"><span class="t">12–2 PM</span><span class="what"><b>Crib and high chair delivered</b> to the Almere house<span class="note">Rental. Picked up again Wednesday.</span></span><span class="chip booked">Booked</span></li>
+        <li class="item" data-s="idea"><span class="t">PM</span><span class="what"><b>Settle in, sleep off the flight</b><span class="note">Raghav at Model UN Fri to Sun, out during the day and home in the evenings</span></span><span class="chip idea">Idea</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard fest-day">
+    <div class="date"><span class="dow">Sat</span><span class="num">7</span><span class="where">Almere</span><span class="sun">Sunset ~5:01 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Easy day</h3><span class="chip fest">Choti Diwali</span></div>
+      <ul class="items">
+        <li class="item" data-s="idea"><span class="t">Day</span><span class="what"><b>PAN Amsterdam</b>, art, antiques and design fair at the RAI<span class="note">Runs Nov 1–8, about 30 min from Almere.</span></span><span class="chip idea">Idea</span></li>
+        <li class="item" data-s="booked"><span class="t">Day</span><span class="what"><b>Raghav at Model UN</b><span class="note">Back home in the evening</span></span><span class="chip booked">Booked</span></li>
+        <li class="item" data-s="idea"><span class="t">Eve</span><span class="what"><b>Heads up:</b> Museum Night in Amsterdam<span class="note">Just an idea, only if there's energy. 65+ museums open late, so museum areas will be busy tonight.</span></span><span class="chip idea">Idea</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard fest-day">
+    <div class="date"><span class="dow">Sun</span><span class="num">8</span><span class="where">Almere</span><span class="sun">Sunset ~4:59 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Diwali with the family</h3><span class="chip fest">Diwali · Lakshmi Puja</span></div>
+      <ul class="items">
+        <li class="item" data-s="booked"><span class="t">All day</span><span class="what"><b>Diwali at home in Almere</b><span class="note">Raghav at Model UN during the day, its last day, home for the evening</span></span><span class="chip fest">Family</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard fest-day">
+    <div class="date"><span class="dow">Mon</span><span class="num">9</span><span class="where">Almere</span><span class="sun">Sunset ~4:57 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Baby Aunty arrives</h3><span class="chip fest">Govardhan Puja</span></div>
+      <ul class="items">
+        <li class="item" data-s="pending"><span class="t">~9:00 AM</span><span class="what"><b>Baby Aunty lands at Schiphol</b><span class="note">Flight details to be confirmed. Who's driving the pickup: TBD</span></span><span class="chip pending">To confirm</span></li>
+        <li class="item" data-s="booked"><span class="t">Eve</span><span class="what"><b>Diwali, day two</b> with the family</span><span class="chip fest">Family</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard">
+    <div class="date"><span class="dow">Tue</span><span class="num">10</span><span class="where">Almere</span><span class="sun">Sunset ~4:55 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Day trip, then date night</h3></div>
+      <ul class="items">
+        <li class="item" data-s="idea"><span class="t">10 AM–5 PM</span><span class="what"><b>Kröller-Müller Museum</b>, Otterlo<span class="note">All 88 of its Van Goghs shown together, first time since 1984. About 1 hr drive. <a href="https://www.krollermuller.nl/en/what-s-on/exhibitions/van-gogh-all-our-paintings">Tickets</a></span></span><span class="chip idea">Maybe</span></li>
+        <li class="item" data-s="pending"><span class="t">7:00 PM</span><span class="what"><b>Chirag &amp; Ali, dinner in Amsterdam</b><span class="note">Mala and Kuldeep watch Anushka. Shortlist: <a href="https://rijsel.com/en/">Rijsel</a> (Bib Gourmand, book online) or <a href="https://www.vinkeles.com/menu/">Vinkeles</a> (2 Michelin stars, +31 20 530 2010)</span></span><span class="chip pending">Maybe</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard">
+    <div class="date"><span class="dow">Wed</span><span class="num">11</span><span class="where">→ Amsterdam</span><span class="sun">Sunset 4:54 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Goodbyes and the move to the city</h3></div>
+      <ul class="items">
+        <li class="item" data-s="pending"><span class="t">~6:00 AM</span><span class="what"><b>Leave Almere for Schiphol</b><span class="note">Time for the Avis return and check-in</span></span><span class="chip pending">Plan</span></li>
+        <li class="item" data-s="booked"><span class="t">9:50 AM</span><span class="what"><b>Mala, Kuldeep &amp; Divya fly home</b> on KLM KL0605, nonstop to SFO</span><span class="chip booked">Booked</span></li>
+        <li class="item" data-s="booked"><span class="t">10 AM–12 PM</span><span class="what"><b>Crib and high chair picked up</b> from the Almere house<span class="note">Then on to the hotel</span></span><span class="chip booked">Booked</span></li>
+        <li class="item" data-s="booked"><span class="t">PM</span><span class="what"><b>Check in, Waldorf Astoria</b><span class="note">Reservation under Ali's name. Room with a crib.</span></span><span class="chip booked">Booked</span></li>
+        <li class="item" data-s="booked"><span class="t">6:15 PM</span><span class="what"><b>De Kas</b>, dinner in the 1920s greenhouse<span class="note">Table for 3 under Ali's name. Michelin star, vegetarian menu on request. 15–20 min taxi.</span></span><span class="chip booked">Booked</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard">
+    <div class="date"><span class="dow">Thu</span><span class="num">12</span><span class="where">Amsterdam</span><span class="sun">Sunset 4:52 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Farewell dinner</h3></div>
+      <ul class="items">
+        <li class="item" data-s="pending"><span class="t">Eve</span><span class="what"><b>Farewell dinner with Baby Aunty</b> and the family<span class="note">Venue TBD. Idea: <a href="https://mayur.nl/home/">Mayur</a>, North Indian since 1981, near Leidseplein</span></span><span class="chip pending">Pending</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard">
+    <div class="date"><span class="dow">Fri</span><span class="num">13</span><span class="where">Amsterdam</span><span class="sun">Sunset ~4:50 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Last full day, canal at sunset</h3></div>
+      <ul class="items">
+        <li class="item" data-s="pending"><span class="t">TBD</span><span class="what"><b>Baby Aunty flies out</b> of Schiphol<span class="note">Flight details to be confirmed</span></span><span class="chip pending">To confirm</span></li>
+        <li class="item" data-s="idea"><span class="t">Lunch</span><span class="what"><b><a href="https://www.deleurope.com/restaurants/">Brasserie Marie</a></b> at De L'Europe, on the Amstel<span class="note">Bib Gourmand, easy with the baby, 10 min from the hotel</span></span><span class="chip idea">Idea</span></li>
+        <li class="item" data-s="pending"><span class="t">4:15 PM</span><span class="what"><b>Private canal cruise</b> from the Waldorf's dock<span class="note">Chirag, Ali &amp; Anushka. About 60 min in a heated cabin, out through sunset. Booked via the hotel concierge (Voyage Amsterdam).</span></span><span class="chip pending">Pending</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="daycard">
+    <div class="date"><span class="dow">Sat</span><span class="num">14</span><span class="where">Home</span><span class="sun">Sunset ~4:48 PM</span></div>
+    <div class="body">
+      <div class="dhead"><h3>Fly home</h3></div>
+      <ul class="items">
+        <li class="item" data-s="pending"><span class="t">~6:45 AM</span><span class="what"><b>Leave the Waldorf</b> for Schiphol<span class="note">About 25 min by taxi</span></span><span class="chip pending">Plan</span></li>
+        <li class="item" data-s="booked"><span class="t">9:50 AM</span><span class="what"><b>KLM KL0605, nonstop to SFO</b><span class="note">Chirag, Ali, Anushka</span></span><span class="chip booked">Booked</span></li>
+      </ul>
+    </div>
+  </article>
+
+  </div>
+</section>
+
+<section aria-labelledby="eat">
+  <div class="sec-head"><h2 id="eat">Where to eat</h2><span class="eyebrow">shortlist</span></div>
+  <div class="cols" style="margin-top:14px">
+    <div class="panel">
+      <h3>Indian, family meals</h3>
+      <ul>
+        <li><b><a href="https://www.bits-and-bites.nl/">Bits &amp; Bites</a></b><span>Almere · dosa and biryani · daily noon–10 PM</span></li>
+        <li><b><a href="https://themadrasdiaries.nl/">The Madras Diaries</a></b><span>Near the Waldorf · South Indian, dosa · lunch or dinner · steep stairs</span></li>
+        <li><b><a href="https://saravanaa-bhavan.nl/">Saravanaa Bhavan</a></b><span>De Pijp · vegetarian dosa and thali · lunch</span></li>
+        <li><b><a href="https://mayur.nl/home/">Mayur</a></b><span>Leidseplein · North Indian · dinner from 5 PM</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Good, well run, not starred</h3>
+      <ul>
+        <li><b><a href="https://www.deleurope.com/restaurants/">Brasserie Marie</a></b><span>Bib Gourmand · Parisian brasserie on the Amstel</span></li>
+        <li><b><a href="https://rijsel.com/en/">Rijsel</a></b><span>Bib Gourmand · French-Flemish rotisserie · Mon–Fri dinner</span></li>
+        <li><b><a href="https://www.boonendekoot.nl/">Boon &amp; De Koot</a></b><span>Bib Gourmand 2026 · vegetable-led bistro</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Falafel, lunch</h3>
+      <ul>
+        <li><b><a href="https://dna-hummusbistro.com/">Hummus Bistro d&amp;a</a></b><span>Jordaan or Oost · sit-down</span></li>
+        <li><b>Dr. Falafel</b><span>Nassaukade · sourdough pita</span></li>
+        <li><b>Maoz</b><span>Several in the centre · fast, salad bar</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="todo">
+  <div class="sec-head"><h2 id="todo">Still to sort</h2></div>
+  <div class="panel todo" style="margin-top:14px">
+    <ul>
+      <li><span class="box"></span><span><b>Tuesday date night</b> · book Rijsel or Vinkeles</span></li>
+      <li><span class="box"></span><span><b>Friday canal cruise</b> · email the Waldorf concierge (4:15 PM, heated cabin, infant life vest)</span></li>
+      <li><span class="box"></span><span><b>De Kas</b> · send the baby and vegetarian details email</span></li>
+      <li><span class="box"></span><span><b>Thursday farewell dinner</b> · pick the place and headcount</span></li>
+      <li><span class="box"></span><span><b>Baby Aunty</b> · confirm flight details both ways, Monday pickup driver</span></li>
+      <li><span class="box"></span><span><b>Kröller-Müller</b> · decide yes or no for Tuesday</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>Sunset times at Amsterdam; Nov 11–12 confirmed, other days approximate. Festival days per the Drik Panchang calendar for Amsterdam. Last updated 10 Oct 2026.</footer>
+</div>
+
+<script>
+(function(){
+  var btns=document.querySelectorAll('button.f');
+  function apply(f){
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.f===f));});
+    document.querySelectorAll('.item').forEach(function(li){li.hidden=(f==='booked'&&li.dataset.s!=='booked');});
+    document.querySelectorAll('.daycard').forEach(function(card){
+      var any=card.querySelector('.item:not([hidden])');card.hidden=!any;});
+    try{localStorage.setItem('ams-filter',f);}catch(e){}
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.f);});});
+  var saved='all';try{saved=localStorage.getItem('ams-filter')||'all';}catch(e){}
+  apply(saved);
+})();
+</script>
+
+</body>
+</html>
